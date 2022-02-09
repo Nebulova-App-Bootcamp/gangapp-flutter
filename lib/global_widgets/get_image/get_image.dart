@@ -1,5 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:gangapp_flutter/models/product_model.dart';
+import 'package:gangapp_flutter/models/user_model.dart';
 import 'package:gangapp_flutter/ui/auth/controllers/auth_controller.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -7,47 +9,70 @@ import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
 class GetImage {
   late String urlGetImage;
+  late String pathImage;
   final AuthController authController = Get.find();
   final picker = ImagePicker();
 
-  Future _uploadFile(BuildContext context, File imageProfile) async {
-    firebase_storage.Reference storageReference = firebase_storage
-        .FirebaseStorage.instance
-        .ref()
-        .child('imagesProfile/${authController.firestoreUser.value!.uid}');
-
-    print(storageReference);
+  Future uploadFileProduct(BuildContext context, File imageProfile) async {
+    firebase_storage.Reference storageReference =
+        firebase_storage.FirebaseStorage.instance.ref().child('productuid');
 
     firebase_storage.UploadTask uploadTask =
         storageReference.putFile(imageProfile);
-
-    print(uploadTask);
 
     await uploadTask.whenComplete(
       () {
         storageReference.getDownloadURL().then((url) {
           urlGetImage = url;
-          print(url);
-          print(urlGetImage);
 
-          // UserModel _updatedUser = UserModel(
-          //   uid: authController.firestoreUser.value!.uid,
-          //   email: authController.firestoreUser.value!.email,
-          //   name: authController.firestoreUser.value!.name,
-          //   photoUrl: url,
-          // );
-          // authController.updateUser(_updatedUser);
+          ProductModel _updatedProduct = ProductModel(
+            photoUrl: url,
+          );
+
+          print(_updatedProduct.uid);
+          print(_updatedProduct.photoUrl);
+          // authController.updateProduct(_updatedProduct);
         });
       },
     );
   }
 
-  Future _imgFromGallery(BuildContext context) async {
+  Future uploadFileUser(BuildContext context, File imageProfile) async {
+    firebase_storage.Reference storageReference = firebase_storage
+        .FirebaseStorage.instance
+        .ref()
+        .child('imagesProfile/${authController.firestoreUser.value!.uid}');
+
+    firebase_storage.UploadTask uploadTask =
+        storageReference.putFile(imageProfile);
+
+    await uploadTask.whenComplete(
+      () {
+        storageReference.getDownloadURL().then((url) {
+          urlGetImage = url;
+
+          UserModel _updatedUser = UserModel(
+            uid: authController.firestoreUser.value!.uid,
+            email: authController.firestoreUser.value!.email,
+            name: authController.firestoreUser.value!.name,
+            photoUrl: url,
+          );
+          authController.updateUser(_updatedUser);
+        });
+      },
+    );
+  }
+
+  Future<String> _imgFromGallery(BuildContext context) async {
     XFile? image =
         await picker.pickImage(source: ImageSource.gallery, imageQuality: 50);
 
     print(image!.path);
-    _uploadFile(context, File(image.path));
+
+    pathImage = image.path;
+
+    return pathImage;
+    // await _uploadFile(context, File(image.path));
   }
 
   Future _imgFromCamera(BuildContext context) async {
@@ -56,7 +81,11 @@ class GetImage {
 
     print(image!.path);
 
-    _uploadFile(context, File(image.path));
+    pathImage = image.path;
+
+    return pathImage;
+
+    // await _uploadFile(context, File(image.path));
   }
 
   Future showPicker(context) async {
@@ -70,16 +99,16 @@ class GetImage {
               ListTile(
                 leading: Icon(Icons.photo_library),
                 title: Text("Acceder a la galeria"),
-                onTap: () {
-                  _imgFromGallery(context);
+                onTap: () async {
+                  await _imgFromGallery(context);
                   Get.back();
                 },
               ),
               ListTile(
                 leading: Icon(Icons.photo_camera),
                 title: Text("Acceder a la cámara"),
-                onTap: () {
-                  _imgFromCamera(context);
+                onTap: () async {
+                  await _imgFromCamera(context);
                   Get.back();
                 },
               ),

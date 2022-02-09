@@ -29,6 +29,7 @@ class AuthController extends GetxController {
   Rxn<UserModel> firestoreUser = Rxn<UserModel>();
 
   var urlImageUser = ''.obs;
+  var pathImageUser = ''.obs;
 
   @override
   void onClose() {

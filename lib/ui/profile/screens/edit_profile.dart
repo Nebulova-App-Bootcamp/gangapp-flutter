@@ -1,11 +1,11 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:gangapp_flutter/global_widgets/get_image/get_image.dart';
 import 'package:gangapp_flutter/global_widgets/textfield_global.dart';
 import 'package:gangapp_flutter/models/user_model.dart';
 import 'package:gangapp_flutter/ui/auth/controllers/auth_controller.dart';
 import 'package:gangapp_flutter/ui/theme/color_theme.dart';
-import 'package:gangapp_flutter/ui/utils/form_validator.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -22,8 +22,7 @@ class EditProfile extends StatelessWidget {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          authController.urlImageUser.value = getImage.urlGetImage;
-          print(authController.urlImageUser.value);
+          print(authController.pathImageUser.value);
         },
       ),
       body: Obx(
@@ -52,15 +51,20 @@ class EditProfile extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 70.0, left: 80, right: 80),
                 child: ClipRRect(
-                  child: Container(
-                    color: Colors.green,
-                    height: 200,
-                    width: 400,
-                    child: Image.network(
-                      authController.firestoreUser.value!.photoUrl!,
-                      fit: BoxFit.fill,
-                    ),
-                  ),
+                  child: (authController.pathImageUser.value != '')
+                      ? Container(
+                          color: Colors.green,
+                          height: 200,
+                          width: 400,
+                          child: Image.file(
+                              File(authController.pathImageUser.value))
+
+                          //  Image.network(
+                          //   authController.firestoreUser.value!.photoUrl!,
+                          //   fit: BoxFit.fill,
+                          // ),
+                          )
+                      : Container(),
                   borderRadius: BorderRadius.circular(50),
                 ),
               ),
@@ -88,6 +92,8 @@ class EditProfile extends StatelessWidget {
                   ),
                   onPressed: () async {
                     await getImage.showPicker(context);
+                    print(getImage.pathImage);
+                    authController.pathImageUser.value = getImage.pathImage;
 
                     // print(GetImage().urlImage);
                   },
@@ -144,6 +150,37 @@ class EditProfile extends StatelessWidget {
                         photoUrl: authController.firestoreUser.value!.photoUrl,
                       );
                       authController.updateUser(_updatedUser);
+                    }
+                  },
+                ),
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.only(left: 30, right: 30, bottom: 40),
+              alignment: Alignment.bottomCenter,
+              child: SizedBox(
+                height: 50,
+                width: double.infinity,
+                child: TextButton(
+                  style: ButtonStyle(
+                      shape: MaterialStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                      ),
+                      backgroundColor:
+                          MaterialStateProperty.all(Colors.blue[200])),
+                  child: const Text(
+                    "GUARDAR",
+                    style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
+                  ),
+                  onPressed: () async {
+                    if (authController.pathImageUser.value != '') {
+                      getImage.uploadFileUser(
+                          context, File(authController.pathImageUser.value));
                     }
                   },
                 ),

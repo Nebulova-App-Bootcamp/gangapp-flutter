@@ -46,7 +46,7 @@ class ProductForm extends StatelessWidget {
                           color: Colors.white),
                     ),
                     onPressed: () async {
-                      GetImage().showPicker(context);
+                      // GetImage().showPicker(context);
                     },
                   ),
                 ),

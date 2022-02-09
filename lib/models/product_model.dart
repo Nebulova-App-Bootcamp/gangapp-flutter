@@ -11,12 +11,12 @@ class ProductModel {
   final String? photoUrl;
 
   ProductModel({
-    required this.photoUrl,
-    required this.uid,
-    required this.name,
-    required this.description,
-    required this.originalPrice,
-    required this.realPrice,
+    this.photoUrl,
+    this.uid,
+    this.name,
+    this.description,
+    this.originalPrice,
+    this.realPrice,
   });
 
   factory ProductModel.fromJson(Map<String, dynamic> json) =>
