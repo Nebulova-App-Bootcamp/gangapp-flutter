@@ -28,6 +28,8 @@ class AuthController extends GetxController {
   Rxn<User> firebaseUser = Rxn<User>();
   Rxn<UserModel> firestoreUser = Rxn<UserModel>();
 
+  var urlImageUser = ''.obs;
+
   @override
   void onClose() {
     emailController.dispose();

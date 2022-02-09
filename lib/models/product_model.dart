@@ -8,8 +8,10 @@ class ProductModel {
   final String? description;
   final String? originalPrice;
   final String? realPrice;
+  final String? photoUrl;
 
   ProductModel({
+    required this.photoUrl,
     required this.uid,
     required this.name,
     required this.description,

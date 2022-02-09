@@ -8,7 +8,7 @@ class Page2 extends StatelessWidget {
     return Stack(
       children: [
         Opacity(
-          opacity: 0.8,
+          opacity: 0.5,
           child: Image.network(
             "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg",
             height: MediaQuery.of(context).size.height,
@@ -19,7 +19,7 @@ class Page2 extends StatelessWidget {
         Positioned(
           top: 40,
           left: 40,
-          child: Text("HOLAAAAAAAAA"),
+          child: Text("HOLAAA"),
         ),
         Positioned(
           top: 80,

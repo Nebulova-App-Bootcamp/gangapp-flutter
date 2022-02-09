@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:gangapp_flutter/global_widgets/get_image/get_image.dart';
 import 'package:gangapp_flutter/global_widgets/show_alert_dialog.dart';
 import 'package:gangapp_flutter/global_widgets/textfield_global.dart';
 import 'package:gangapp_flutter/models/product_model.dart';
@@ -22,6 +23,34 @@ class ProductForm extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
+              Container(
+                padding: const EdgeInsets.only(left: 30, right: 30, top: 40),
+                alignment: Alignment.bottomCenter,
+                child: SizedBox(
+                  height: 50,
+                  width: double.infinity,
+                  child: TextButton(
+                    style: ButtonStyle(
+                        shape: MaterialStateProperty.all(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                        ),
+                        backgroundColor:
+                            MaterialStateProperty.all(Colors.blue[200])),
+                    child: const Text(
+                      "EDITAR FOTO",
+                      style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
+                    ),
+                    onPressed: () async {
+                      GetImage().showPicker(context);
+                    },
+                  ),
+                ),
+              ),
               Padding(
                 padding: const EdgeInsets.only(top: 40, left: 30),
                 child: Row(
