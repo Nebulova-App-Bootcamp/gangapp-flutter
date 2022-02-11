@@ -11,8 +11,8 @@ import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 class GetImage {
   late String urlGetImage;
   late String pathImage;
-  final AuthController authController = Get.find();
-  final ProductController productController = Get.find();
+  // final AuthController authController = Get.find();
+
   final picker = ImagePicker();
 
   Future uploadFileProduct(BuildContext context, File imageProfile,
@@ -38,27 +38,22 @@ class GetImage {
     );
   }
 
-  Future uploadFileUser(BuildContext context, File imageProfile) async {
+  Future uploadFileUser(
+      BuildContext context, File imageProfile, UserModel updatedUser) async {
     firebase_storage.Reference storageReference = firebase_storage
         .FirebaseStorage.instance
         .ref()
-        .child('imagesProfile/${authController.firestoreUser.value!.uid}');
+        .child('imagesProfile/${updatedUser.uid}');
 
     firebase_storage.UploadTask uploadTask =
         storageReference.putFile(imageProfile);
 
     await uploadTask.whenComplete(
-      () {
-        storageReference.getDownloadURL().then((url) {
+      () async {
+        await storageReference.getDownloadURL().then((url) {
           urlGetImage = url;
 
-          UserModel _updatedUser = UserModel(
-            uid: authController.firestoreUser.value!.uid,
-            email: authController.firestoreUser.value!.email,
-            name: authController.firestoreUser.value!.name,
-            photoUrl: url,
-          );
-          authController.updateUser(_updatedUser);
+          updatedUser.photoUrl = url;
         });
       },
     );

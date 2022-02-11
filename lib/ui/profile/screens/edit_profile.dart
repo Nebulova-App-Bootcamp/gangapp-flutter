@@ -42,27 +42,26 @@ class EditProfile extends StatelessWidget {
                 ],
               ),
             ),
-            if (authController.firestoreUser.value!.photoUrl != null)
-              Padding(
-                padding: const EdgeInsets.only(top: 70.0, left: 80, right: 80),
-                child: ClipRRect(
-                  child: (authController.pathImageUser.value != '')
-                      ? Container(
-                          color: Colors.green,
-                          height: 200,
-                          width: 400,
-                          child: Image.file(
-                              File(authController.pathImageUser.value))
+            Padding(
+              padding: const EdgeInsets.only(top: 70.0, left: 80, right: 80),
+              child: ClipRRect(
+                child: (authController.pathImageUser.value != '')
+                    ? Container(
+                        color: Colors.green,
+                        height: 200,
+                        width: 400,
+                        child:
+                            Image.file(File(authController.pathImageUser.value))
 
-                          //  Image.network(
-                          //   authController.firestoreUser.value!.photoUrl!,
-                          //   fit: BoxFit.fill,
-                          // ),
-                          )
-                      : Container(),
-                  borderRadius: BorderRadius.circular(50),
-                ),
+                        //  Image.network(
+                        //   authController.firestoreUser.value!.photoUrl!,
+                        //   fit: BoxFit.fill,
+                        // ),
+                        )
+                    : Container(),
+                borderRadius: BorderRadius.circular(50),
               ),
+            ),
             Container(
               padding: const EdgeInsets.only(left: 30, right: 30, top: 40),
               alignment: Alignment.bottomCenter,
@@ -174,8 +173,18 @@ class EditProfile extends StatelessWidget {
                   ),
                   onPressed: () async {
                     if (authController.pathImageUser.value != '') {
+                      UserModel _updatedUser = UserModel(
+                        uid: authController.firestoreUser.value!.uid,
+                        email: authController.firestoreUser.value!.email,
+                        name: authController.nameController.text,
+                        photoUrl: authController.firestoreUser.value!.photoUrl,
+                      );
                       await getImage.uploadFileUser(
-                          context, File(authController.pathImageUser.value));
+                          context,
+                          File(authController.pathImageUser.value),
+                          _updatedUser);
+
+                      authController.updateUser(_updatedUser);
                     }
                     Get.back();
                   },
