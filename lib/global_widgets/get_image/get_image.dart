@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gangapp_flutter/models/product_model.dart';
 import 'package:gangapp_flutter/models/user_model.dart';
 import 'package:gangapp_flutter/ui/auth/controllers/auth_controller.dart';
-import 'package:gangapp_flutter/ui/products/controllers/product_controller.dart';
+import 'package:gangapp_flutter/ui/products/controllers/product_edit_controller.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;

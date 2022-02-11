@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:gangapp_flutter/models/product_model.dart';
 import 'package:gangapp_flutter/services/firestore/firestore_service.dart';
@@ -8,6 +6,21 @@ class DataBaseProducts {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   static String _collection = "products";
   static FirestoreService _service = FirestoreService(_collection);
+
+  Stream<List<ProductModel>> productsStream() {
+    return _firestore
+        .collection(_collection)
+        .snapshots()
+        .map((QuerySnapshot query) {
+      List<ProductModel> retVal = [];
+      for (var element in query.docs) {
+        retVal
+            .add(ProductModel.fromJson(element.data() as Map<String, dynamic>));
+      }
+      print(retVal);
+      return retVal;
+    });
+  }
 
   Future<bool> createNewProduct(ProductModel product) async {
     try {

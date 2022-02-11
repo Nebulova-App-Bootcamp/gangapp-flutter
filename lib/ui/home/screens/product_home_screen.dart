@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gangapp_flutter/routes/app_pages.dart';
+import 'package:gangapp_flutter/ui/products/controllers/product_controler.dart';
 import 'package:gangapp_flutter/ui/theme/color_theme.dart';
 import 'package:get/get.dart';
 
@@ -8,6 +9,7 @@ class ProductHomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ProductController productController = Get.find();
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         child: Icon(
@@ -20,7 +22,16 @@ class ProductHomeScreen extends StatelessWidget {
         },
       ),
       body: Center(
-        child: Text("Home Product"),
+        child: Column(
+          children: [
+            Text("Home Product"),
+            FloatingActionButton(onPressed: () {
+              print(productController.productsList.value.first.description);
+              print(productController.productsList.value[1].description);
+              print(productController.productsList.value[2].description);
+            })
+          ],
+        ),
       ),
     );
   }

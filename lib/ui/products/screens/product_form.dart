@@ -6,7 +6,7 @@ import 'package:gangapp_flutter/global_widgets/get_image/get_image.dart';
 import 'package:gangapp_flutter/global_widgets/textfield_global.dart';
 import 'package:gangapp_flutter/models/product_model.dart';
 import 'package:gangapp_flutter/services/firestore/firestore_service_products.dart';
-import 'package:gangapp_flutter/ui/products/controllers/product_controller.dart';
+import 'package:gangapp_flutter/ui/products/controllers/product_edit_controller.dart';
 import 'package:gangapp_flutter/ui/theme/color_theme.dart';
 import 'package:gangapp_flutter/ui/utils/form_validator.dart';
 import 'package:get/get.dart';
@@ -16,7 +16,7 @@ class ProductForm extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    ProductController productController = Get.find();
+    ProductEditController productController = Get.find();
 
     productController.dropdownValue.value =
         productController.productCategories.first;
