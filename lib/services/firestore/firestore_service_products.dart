@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:gangapp_flutter/models/product_model.dart';
 import 'package:gangapp_flutter/services/firestore/firestore_service.dart';
@@ -14,6 +16,7 @@ class DataBaseProducts {
         "uid": product.uid,
         "name": product.name,
         "description": product.description,
+        "photoUrl": product.photoUrl,
       });
       return true;
     } catch (e) {
