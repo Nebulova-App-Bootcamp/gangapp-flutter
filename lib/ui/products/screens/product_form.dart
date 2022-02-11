@@ -18,6 +18,9 @@ class ProductForm extends StatelessWidget {
   Widget build(BuildContext context) {
     ProductController productController = Get.find();
 
+    productController.dropdownValue.value =
+        productController.productCategories.first;
+
     GetImage getImage = GetImage();
     DataBaseProducts dataBaseProducts = DataBaseProducts();
 
@@ -235,14 +238,14 @@ class ProductForm extends StatelessWidget {
                         productController.productUid.value =
                             dataBaseProducts.generateIdProduct();
                         ProductModel newProduct = ProductModel(
-                          uid: productController.productUid.value,
-                          name: productController.nameProduct.text,
-                          description:
-                              productController.descriptionProduct.text,
-                          originalPrice:
-                              productController.originalPrice.text + "€",
-                          realPrice: productController.realPrice.text + "€",
-                        );
+                            uid: productController.productUid.value,
+                            name: productController.nameProduct.text,
+                            description:
+                                productController.descriptionProduct.text,
+                            originalPrice:
+                                productController.originalPrice.text + "€",
+                            realPrice: productController.realPrice.text + "€",
+                            category: productController.dropdownValue.value);
                         print(newProduct.uid);
                         print(newProduct.photoUrl);
 
@@ -256,6 +259,8 @@ class ProductForm extends StatelessWidget {
 
                           productController.createProduct(newProduct);
                         }
+
+                        Get.back();
 
                         // if (_formKey.currentState!.validate()) {
                         //   // ProductModel newProduct = ProductModel(

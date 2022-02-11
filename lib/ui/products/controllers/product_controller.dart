@@ -21,7 +21,7 @@ class ProductController extends GetxController {
     return dataBaseProducts.createNewProduct(product);
   }
 
-  var dropdownValue = 'One'.obs;
+  List<String> productCategories = ['Hombre', 'Mujer', 'Niños', 'Equipamiento'];
 
-  List<String> productCategories = ['One', 'Two', 'other', 'Four'];
+  var dropdownValue = ''.obs;
 }

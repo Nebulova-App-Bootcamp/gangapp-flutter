@@ -17,6 +17,13 @@ class DataBaseProducts {
         "name": product.name,
         "description": product.description,
         "photoUrl": product.photoUrl,
+        "originalPrice": product.originalPrice,
+        "realPrice": product.realPrice,
+        "productCategory": product.category
+
+        //   this.originalPrice,
+        // this.realPrice,
+        // this.productCategory
       });
       return true;
     } catch (e) {
