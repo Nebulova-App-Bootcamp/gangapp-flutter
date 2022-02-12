@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gangapp_flutter/routes/app_pages.dart';
 import 'package:gangapp_flutter/ui/home/widgets/product_image.dart';
 import 'package:gangapp_flutter/ui/products/controllers/product_controller.dart';
+import 'package:gangapp_flutter/ui/products/screens/product_details.dart';
 import 'package:gangapp_flutter/ui/theme/color_theme.dart';
 import 'package:gangapp_flutter/ui/theme/spaces_theme.dart';
 import 'package:get/get.dart';
@@ -35,52 +36,62 @@ class ProductHomeScreen extends StatelessWidget {
               childAspectRatio: 0.8,
             ),
             itemBuilder: (context, index) {
-              return Card(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10)),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    if (productController.productsList.value[index].photoUrl !=
-                        null)
-                      Expanded(
-                        flex: 7,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(10),
-                            topRight: Radius.circular(10),
+              return GestureDetector(
+                onTap: () {
+                  Get.to(
+                    () => ProductDetails(
+                      productModel: productController.productsList.value[index],
+                    ),
+                  );
+                },
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      if (productController
+                              .productsList.value[index].photoUrl !=
+                          null)
+                        Expanded(
+                          flex: 7,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(10),
+                              topRight: Radius.circular(10),
+                            ),
+                            child: ProductImage(
+                              imageUrl: productController
+                                  .productsList.value[index].photoUrl!,
+                            ),
                           ),
-                          child: ProductImage(
-                            imageUrl: productController
-                                .productsList.value[index].photoUrl!,
+                        ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Flexible(
+                        flex: 1,
+                        child: Container(
+                          margin: EdgeInsets.symmetric(horizontal: 10.0),
+                          width: double.infinity,
+                          child: Text(
+                              "${productController.productsList.value[index].name}"),
+                        ),
+                      ),
+                      Flexible(
+                        flex: 1,
+                        child: Container(
+                          margin: EdgeInsets.symmetric(horizontal: 10.0),
+                          width: double.infinity,
+                          child: Text(
+                            "${productController.productsList.value[index].realPrice}",
+                            textAlign: TextAlign.end,
                           ),
                         ),
                       ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Flexible(
-                      flex: 1,
-                      child: Container(
-                        margin: EdgeInsets.symmetric(horizontal: 10.0),
-                        width: double.infinity,
-                        child: Text(
-                            "${productController.productsList.value[index].name}"),
-                      ),
-                    ),
-                    Flexible(
-                      flex: 1,
-                      child: Container(
-                        margin: EdgeInsets.symmetric(horizontal: 10.0),
-                        width: double.infinity,
-                        child: Text(
-                          "${productController.productsList.value[index].realPrice}",
-                          textAlign: TextAlign.end,
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 10)
-                  ],
+                      SizedBox(height: 10)
+                    ],
+                  ),
                 ),
               );
             },
