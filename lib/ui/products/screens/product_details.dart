@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gangapp_flutter/models/product_model.dart';
+import 'package:gangapp_flutter/ui/products/widgets/webview_product.dart';
 import 'package:gangapp_flutter/ui/theme/color_theme.dart';
 import 'package:gangapp_flutter/ui/theme/text_theme.dart';
 import 'package:get/get.dart';
@@ -12,6 +13,11 @@ class ProductDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Get.to(WebViewProduct());
+        },
+      ),
       backgroundColor: Colors.green,
       body: Padding(
         padding: const EdgeInsets.only(top: 40, left: 30, right: 30),
