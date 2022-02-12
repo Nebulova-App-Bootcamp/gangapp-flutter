@@ -4,6 +4,7 @@ import 'package:gangapp_flutter/ui/products/widgets/webview_product.dart';
 import 'package:gangapp_flutter/ui/theme/color_theme.dart';
 import 'package:gangapp_flutter/ui/theme/text_theme.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ProductDetails extends StatelessWidget {
   final ProductModel productModel;
@@ -12,9 +13,12 @@ class ProductDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // const String _url = 'https://flutter.dev';
+
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
+        onPressed: () async {
+          // if (!await launch(_url)) throw 'Could not launch $_url';
           Get.to(WebViewProduct());
         },
       ),
