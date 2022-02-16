@@ -5,6 +5,7 @@ import 'package:gangapp_flutter/ui/auth/screens/loading_screen.dart';
 import 'package:gangapp_flutter/ui/products/bindings/product_edit_binding.dart';
 import 'package:gangapp_flutter/ui/products/bindings/produt_binding.dart';
 import 'package:gangapp_flutter/ui/products/screens/product_form.dart';
+import 'package:gangapp_flutter/ui/proof/bindings/product_proof_binding.dart';
 import 'package:get/route_manager.dart';
 
 part 'app_routes.dart';
@@ -24,6 +25,7 @@ class AppPages {
       bindings: [
         NavBinding(),
         ProductBinding(),
+        ProductProofBinding(),
       ],
     ),
     GetPage(
