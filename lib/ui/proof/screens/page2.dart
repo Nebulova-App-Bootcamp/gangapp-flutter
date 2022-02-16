@@ -6,12 +6,13 @@ import 'package:gangapp_flutter/ui/proof/widgets/text_search_field.dart';
 import 'package:get/get.dart';
 
 class Page2 extends StatelessWidget {
-  final ProductProofController productProofController;
-  const Page2({Key? key, required this.productProofController})
-      : super(key: key);
+  const Page2({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    ProductProofController productProofController = Get.find();
     return Obx(
       () => Scaffold(
         appBar: AppBar(

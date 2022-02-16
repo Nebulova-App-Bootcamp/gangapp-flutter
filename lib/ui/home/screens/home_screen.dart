@@ -21,11 +21,10 @@ class HomeScreen extends StatelessWidget {
     NavController navController = Get.find();
     ProductController productController = Get.find();
     ProductProofController productProofController = Get.find();
+
     var screens = [
       Page1(),
-      Page2(
-        productProofController: productProofController,
-      ),
+      Page2(),
       ProductHomeScreen(),
       ProfileScreen(),
     ];
@@ -51,6 +50,9 @@ class HomeScreen extends StatelessWidget {
             navController.index.value = i;
             if (i != 2) {
               productController.productsCategoryList.value.clear();
+            }
+            if (i != 1) {
+              productProofController.searchQueryController.clear();
             }
           },
         ),
