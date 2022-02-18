@@ -11,6 +11,11 @@ class ChatScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     MessageController messageController = Get.find();
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          print(messageController.messagesList);
+        },
+      ),
       appBar: AppBar(),
       body: Stack(
         children: [
