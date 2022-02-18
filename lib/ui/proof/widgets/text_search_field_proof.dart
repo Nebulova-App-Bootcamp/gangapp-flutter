@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:gangapp_flutter/ui/proof/controllers/product_proof_controller.dart';
 import 'package:get/get.dart';
 
-class TextSearchField extends StatelessWidget {
-  const TextSearchField({Key? key}) : super(key: key);
+class TextSearchFieldProof extends StatelessWidget {
+  const TextSearchFieldProof({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:gangapp_flutter/ui/products/controllers/product_controller.dart';
+import 'package:gangapp_flutter/ui/products/widgets/build_actions_search.dart';
+import 'package:gangapp_flutter/ui/products/widgets/text_search_field.dart';
 import 'package:gangapp_flutter/ui/proof/controllers/product_proof_controller.dart';
-import 'package:gangapp_flutter/ui/proof/widgets/build_actions_search.dart';
-import 'package:gangapp_flutter/ui/proof/widgets/text_search_field.dart';
+import 'package:gangapp_flutter/ui/proof/widgets/build_actions_search_proof.dart';
+import 'package:gangapp_flutter/ui/proof/widgets/text_search_field_proof.dart';
+
 import 'package:get/get.dart';
 
 class Page2 extends StatelessWidget {
@@ -20,10 +23,10 @@ class Page2 extends StatelessWidget {
               ? BackButton()
               : Container(),
           title: productProofController.isSearching.value
-              ? TextSearchField()
+              ? TextSearchFieldProof()
               : Text("Title"),
           actions: [
-            BuildActionsSearch(),
+            BuildActionsSearchProof(),
           ],
         ),
         body: Stack(
