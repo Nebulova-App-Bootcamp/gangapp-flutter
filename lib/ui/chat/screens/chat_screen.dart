@@ -99,7 +99,9 @@ class ChatScreen extends StatelessWidget {
                         String _messageId =
                             FirestoreService("chat_messages").generateId();
                         DatabaseMessages.addMessage(
-                            _messageId, messageController.message.value);
+                            _messageId,
+                            messageController.message.value,
+                            Get.parameters['roomId']!);
                         messageController.msgController.clear();
                       },
                       child: Icon(
