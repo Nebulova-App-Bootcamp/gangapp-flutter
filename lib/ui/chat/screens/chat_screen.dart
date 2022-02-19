@@ -13,6 +13,20 @@ class ChatScreen extends StatelessWidget {
     MessageController messageController = Get.find();
     AuthController authController = Get.find();
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        heroTag: "Others",
+        onPressed: () {
+          messageController.chargeM.value++;
+          messageController.messagesList.bindStream(
+            DatabaseMessages().chatMessageStream(
+              Get.parameters['roomId']!,
+              messageController.chargeM.value,
+            ),
+          );
+          print(messageController.chargeM.value);
+        },
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerTop,
       appBar: AppBar(),
       body: Obx(
         () => Stack(

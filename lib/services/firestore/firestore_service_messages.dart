@@ -21,11 +21,12 @@ class DatabaseMessages {
     });
   }
 
-  Stream<List<MessageModel>> chatMessageStream(String roomId) {
+  Stream<List<MessageModel>> chatMessageStream(String roomId, int index) {
     return _firestore
         .collection(_collection)
         .where("roomId", isEqualTo: roomId)
         .orderBy("timestamp", descending: true)
+        .limit(1 + index)
         .snapshots()
         .map((QuerySnapshot query) {
       List<MessageModel> retVal = [];
