@@ -7,6 +7,20 @@ class DataBaseVideos {
   static String _collection = "videos";
   static FirestoreService _service = FirestoreService(_collection);
 
+  Stream<List<VideoModel>> videosStream() {
+    return _firestore
+        .collection(_collection)
+        .snapshots()
+        .map((QuerySnapshot query) {
+      List<VideoModel> retVal = [];
+      for (var element in query.docs) {
+        retVal.add(VideoModel.fromJson(element.data() as Map<String, dynamic>));
+      }
+      print(retVal);
+      return retVal;
+    });
+  }
+
   Future<bool> createNewVideo(VideoModel video) async {
     try {
       video.uid = _service.generateId();
