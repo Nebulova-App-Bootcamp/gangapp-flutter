@@ -13,7 +13,10 @@ class DataBaseVideos {
       await _firestore.collection(_collection).doc(video.uid).set({
         "uid": video.uid,
         "title": video.title,
-        "urlImage": video.urlImage
+        "subtitle": video.subtitle,
+        "urlVideo": video.urlVideo,
+        "urlImage": video.urlImage,
+
         //   this.originalPrice,
         // this.realPrice,
         // this.productCategory

@@ -6,6 +6,9 @@ import 'package:get/get.dart';
 class VideosEditController extends GetxController {
   DataBaseVideos dataBaseVideos = DataBaseVideos();
   TextEditingController titleVideo = TextEditingController();
+  TextEditingController subtitleVideo = TextEditingController();
+  TextEditingController urlVideo = TextEditingController();
+
   Rx<String> urlImage = ''.obs;
   Rx<String> pathImage = ''.obs;
   Rx<String> uidVideo = ''.obs;
