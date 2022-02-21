@@ -8,6 +8,8 @@ import 'package:gangapp_flutter/ui/products/bindings/product_edit_binding.dart';
 import 'package:gangapp_flutter/ui/products/bindings/produt_binding.dart';
 import 'package:gangapp_flutter/ui/products/screens/product_form.dart';
 import 'package:gangapp_flutter/ui/proof/bindings/product_proof_binding.dart';
+import 'package:gangapp_flutter/ui/video/bindings/videos_edit_binding.dart';
+import 'package:gangapp_flutter/ui/video/screens/videos_form.dart';
 import 'package:get/route_manager.dart';
 
 part 'app_routes.dart';
@@ -43,6 +45,10 @@ class AppPages {
       name: Routes.CHAT,
       page: () => ChatScreen(),
       binding: MessageBinding(),
-    )
+    ),
+    GetPage(
+        name: Routes.VIDEOSFORM,
+        page: () => VideosForm(),
+        binding: VideosEditBinding()),
   ];
 }

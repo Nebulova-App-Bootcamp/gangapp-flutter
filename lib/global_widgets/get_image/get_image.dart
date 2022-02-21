@@ -2,8 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:gangapp_flutter/models/product_model.dart';
 import 'package:gangapp_flutter/models/user_model.dart';
-import 'package:gangapp_flutter/ui/auth/controllers/auth_controller.dart';
-import 'package:gangapp_flutter/ui/products/controllers/product_edit_controller.dart';
+import 'package:gangapp_flutter/models/video_model.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
@@ -14,6 +13,29 @@ class GetImage {
   // final AuthController authController = Get.find();
 
   final picker = ImagePicker();
+
+  Future uploadFileVideo(BuildContext context, File imageProfile,
+      String videoUid, VideoModel updateVideo) async {
+    firebase_storage.Reference storageReference = firebase_storage
+        .FirebaseStorage.instance
+        .ref()
+        .child('imagesVideos/$videoUid');
+
+    firebase_storage.UploadTask uploadTask =
+        storageReference.putFile(imageProfile);
+
+    await uploadTask.whenComplete(
+      () async {
+        await storageReference.getDownloadURL().then((url) {
+          urlGetImage = url;
+
+          updateVideo.urlImage = url;
+
+          // productController.createProduct(updateProduct);
+        });
+      },
+    );
+  }
 
   Future uploadFileProduct(BuildContext context, File imageProfile,
       String productUid, ProductModel updateProduct) async {

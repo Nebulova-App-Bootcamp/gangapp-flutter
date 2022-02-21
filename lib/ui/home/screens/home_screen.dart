@@ -12,6 +12,7 @@ import 'package:gangapp_flutter/ui/proof/screens/page1.dart';
 import 'package:gangapp_flutter/ui/proof/screens/page2.dart';
 import 'package:gangapp_flutter/ui/proof/screens/page3.dart';
 import 'package:gangapp_flutter/ui/proof/screens/page4.dart';
+import 'package:gangapp_flutter/ui/video/screens/videos_screen.dart';
 import 'package:get/get.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -24,7 +25,7 @@ class HomeScreen extends StatelessWidget {
     ProductProofController productProofController = Get.find();
 
     var screens = [
-      Page1(),
+      VideosScreen(),
       RoomsChatScreen(),
       ProductHomeScreen(),
       ProfileScreen(),
