@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gangapp_flutter/models/video_model.dart';
+import 'package:gangapp_flutter/routes/app_pages.dart';
+import 'package:gangapp_flutter/ui/video/controllers/play_video_controller.dart';
+import 'package:get/get.dart';
 
 class VideoCard extends StatelessWidget {
   final VideoModel videoModel;
@@ -9,7 +12,13 @@ class VideoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        print(videoModel.urlVideo);
+        Get.toNamed(
+          Routes.VIDEODETAILS,
+          arguments: {
+            "videoUrl": videoModel.urlVideo!,
+            "videoModel": videoModel,
+          },
+        );
       },
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
