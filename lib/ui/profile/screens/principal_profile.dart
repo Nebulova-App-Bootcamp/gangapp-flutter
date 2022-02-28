@@ -1,15 +1,86 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:gangapp_flutter/ui/profile/screens/profile_screen.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:cloud_functions/cloud_functions.dart';
+import 'package:http/http.dart' as http;
 
 class PrincipalProfile extends StatelessWidget {
   const PrincipalProfile({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    FirebaseFunctions functions = FirebaseFunctions.instance;
+
+    Future<void> writeMessage(String message) async {
+      HttpsCallable callable =
+          FirebaseFunctions.instance.httpsCallable('writeMessage');
+      final resp = await callable.call(<String, dynamic>{
+        'text': message,
+      });
+      log("result: ${resp.data}");
+    }
+
+    // Future createData() async {
+    //   try {
+    //     final result = await http.post(
+    //       Uri.parse(
+    //           "https://us-central1-gangapp-nebulova.cloudfunctions.net/data"),
+    //       body: jsonEncode({"name": "proof"}),
+    //       headers: <String, String>{
+    //         'Content-Type': 'application/json; charset=UTF-8',
+    //       },
+    //     );
+    //     print(result);
+    //   } catch (e) {
+    //     print(e);
+    //   }
+    // }
+
+    Future createData() async {
+      try {
+        functions.httpsCallable(
+            "https://us-central1-gangapp-nebulova.cloudfunctions.net/data");
+        // final result = await http.post(
+        //   Uri.parse(
+        //       "https://us-central1-gangapp-nebulova.cloudfunctions.net/data"),
+        //   body: {
+        //     "name": "proof",
+        //     "email": "jose@jose.com",
+        //     "edad": "26",
+        //   },
+        // );
+
+      } catch (e) {
+        print(e);
+      }
+    }
+
+    Future deleteData() async {
+      try {
+        final result = await http.delete(
+          Uri.parse(
+                  "https://us-central1-gangapp-nebulova.cloudfunctions.net/data")
+              .replace(queryParameters: {
+            "id": "vUYBBpzpXBPQBY7g07lk",
+          }),
+        );
+        print(result);
+      } catch (e) {
+        print(e);
+      }
+    }
+
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          createData();
+          writeMessage("Hola desde CF");
+        },
+      ),
       body: ListView(
         padding: const EdgeInsets.fromLTRB(40, 30, 40, 30),
         children: [
@@ -72,7 +143,9 @@ class PrincipalProfile extends StatelessWidget {
           //SMS
           ListTile(
             shape: RoundedRectangleBorder(
-              side: BorderSide(color: Colors.grey[300]!),
+              side: BorderSide(
+                color: Colors.grey[300]!,
+              ),
               borderRadius: BorderRadius.circular(5),
             ),
             contentPadding:
