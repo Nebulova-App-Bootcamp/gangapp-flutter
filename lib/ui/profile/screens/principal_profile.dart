@@ -59,6 +59,25 @@ class PrincipalProfile extends StatelessWidget {
       }
     }
 
+    Future helloWorld() async {
+      try {
+        functions.httpsCallable(
+            "https://us-central1-gangapp-nebulova.cloudfunctions.net/helloWorld");
+        // final result = await http.post(
+        //   Uri.parse(
+        //       "https://us-central1-gangapp-nebulova.cloudfunctions.net/data"),
+        //   body: {
+        //     "name": "proof",
+        //     "email": "jose@jose.com",
+        //     "edad": "26",
+        //   },
+        // );
+
+      } catch (e) {
+        print(e);
+      }
+    }
+
     Future deleteData() async {
       try {
         final result = await http.delete(
@@ -77,8 +96,9 @@ class PrincipalProfile extends StatelessWidget {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          createData();
-          writeMessage("Hola desde CF");
+          helloWorld();
+          // createData();
+          // writeMessage("Hola desde CF");
         },
       ),
       body: ListView(
