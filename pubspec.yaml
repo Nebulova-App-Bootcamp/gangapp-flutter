@@ -3,7 +3,7 @@ description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -30,7 +30,6 @@ dependencies:
   flutter:
     sdk: flutter
 
-
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   get: ^4.6.1
@@ -52,7 +51,7 @@ dependencies:
   webview_flutter: ^3.0.0
   url_launcher: ^6.0.20
   youtube_player_flutter: ^8.0.0
-  share_plus: ^3.1.0
+  share_plus: ^4.0.10
   cloud_functions: ^3.2.8
   http: ^0.13.4
 
@@ -73,7 +72,6 @@ flutter_native_splash:
   color: "#FFFFFF"
   image: assets/image/splash_img.png
 
-
 flutter_icons:
   image_path_android: "assets/launcher/appicon-android.png"
   image_path_ios: "assets/launcher/appicon-ios.png"
@@ -87,7 +85,6 @@ flutter_icons:
 
 # The following section is specific to Flutter.
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
@@ -110,36 +107,32 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
-  #
-  # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/custom-fonts/#from-packages
+    #   - family: Schyler
+    #     fonts:
+    #       - asset: fonts/Schyler-Regular.ttf
+    #       - asset: fonts/Schyler-Italic.ttf
+    #         style: italic
+    #   - family: Trajan Pro
+    #     fonts:
+    #       - asset: fonts/TrajanPro.ttf
+    #       - asset: fonts/TrajanPro_Bold.ttf
+    #         weight: 700
+    #
+    # For details regarding fonts from package dependencies,
+    # see https://flutter.dev/custom-fonts/#from-packages
 
-
-
-
-  # Replaceme: Add your custom icons
-  # Icons font
-  #
-  # To generate you custom icons visit https://www.fluttericon.com/
-  #
-  # 1. Load the previous app icons config, placed in assets/app_icons/config.json to prevent any
-  # loose
-  # 2. Add your new icons and download the files
-  # 3. Replace the following files:
-  #       - assets/app_icons/config.json
-  #       - fonts/AppIcons.ttf
-  #       - lib/ui/theme/app_icons_icons.dart
-   - family:  GangappIcons
-     fonts:
-      - asset: fonts/GangappIcons.ttf
-  
+    # Replaceme: Add your custom icons
+    # Icons font
+    #
+    # To generate you custom icons visit https://www.fluttericon.com/
+    #
+    # 1. Load the previous app icons config, placed in assets/app_icons/config.json to prevent any
+    # loose
+    # 2. Add your new icons and download the files
+    # 3. Replace the following files:
+    #       - assets/app_icons/config.json
+    #       - fonts/AppIcons.ttf
+    #       - lib/ui/theme/app_icons_icons.dart
+    - family: GangappIcons
+      fonts:
+        - asset: fonts/GangappIcons.ttf
